@@ -96,3 +96,53 @@ int main()
 }
 
 ```
+
+
+3. Longest Common Subsequence
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std ;
+
+#define vi vector <int>
+#define vii vector<vi>
+#define MAX 100
+#define Fi(i , L , R) for(int i = L ; i <= R ; i++)
+
+int LongestCommonSubsequence(vi v1 , vi v2 , int m , int n)
+{
+	int lcs[m+1][n+1] ;
+	Fi(i , 0 , m)
+	{
+		lcs[i][0] = 0 ;
+	}
+	Fi(j , 0 , n)
+	{
+		lcs[0][j] = 0 ;
+    }
+	Fi(i , 1 , m)
+	{
+		Fi(j , 1 , n)
+		{
+			if(v1[i-1] == v2[j-1])
+			    lcs[i][j] = lcs[i-1][j-1] + 1 ;
+			else
+			    lcs[i][j] = max(lcs[i-1][j] , lcs[i][j-1]) ;
+		}
+	}
+	return lcs[m][n] ;
+}
+
+int main()
+{
+	int m , n ;
+	cin >> m >> n ;
+	vi v1 (m) , v2 (n) ;
+	Fi(i , 0 , m-1)
+	    cin >> v1[i] ;
+	Fi(i , 0 , n-1)
+	    cin >> v2[i] ;
+	cout << LongestCommonSubsequence(v1 , v2 , m , n) ;
+}
+```
