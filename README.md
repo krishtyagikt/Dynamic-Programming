@@ -37,6 +37,62 @@ int main () {
    return 0 ;
 }
 
+```
 
+2. Fibonacci Problem.
+
+```c++
+
+#include<bits/stdc++.h>
+
+using namespace std ;
+
+#define vi vector <int>
+#define MAX 100
+
+// Normal fibonacci sequence ::
+int fib_normal(int n)
+{
+	if (n <= 1)
+	   return n ;
+	return fib_normal(n-1) + fib_normal(n-2) ;
+}
+
+// fibonacci sequence by memoization(top-down) ::
+
+vi memo(MAX , -1) ;
+
+int fib_memoization(int n)
+{
+	if (memo[n] == -1)
+	{
+		if (n <= 1)
+		    memo[n] = n ;
+		else
+		    memo[n] = fib_memoization(n-1) + fib_memoization(n-2) ;
+	}
+	return memo[n] ;
+}
+
+// fibonacci sequence by tabulation(bottom-up) ::
+
+int fib_tabulation(int n)
+{
+	int f[n+1] ;
+	f[0] = 0 ;
+	f[1] = 1 ;
+	for (int i = 2 ; i < n+1 ; i++)
+	{
+		f[i] = f[i-1] + f[i-2] ;
+	}
+	return f[n] ;
+}
+
+int main()
+{
+	int a = 40 ;
+	cout << fib_tabulation(a) ;
+	return 0 ;
+}
 
 ```
